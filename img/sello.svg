@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="t-reducido">
+<!-- Sello de la Iglesia Cristiana Camino al Cielo Mateo 7:14 (Los Patios,
+     Norte de Santander). Redibujo vectorial del avatar histórico del canal: se
+     conservan el anillo, la menorá centrada y el nombre en arco; lo que cambia
+     es la ejecución. Colores en datos/marca.json. El texto está convertido a
+     contornos (Archivo Black, SIL OFL 1.1): el archivo no depende de ninguna
+     fuente instalada. Sin degradados: sólo rellenos planos. -->
+  <title id="t-reducido">Sello reducido de la Iglesia Cristiana Camino al Cielo</title>
+  <desc>Anillo dorado con la menorá de siete brazos al centro, sin texto. Es la versión que va sobre los clips, a 64 px de alto.</desc>
+  <circle cx="64" cy="64" r="62" fill="#D9A93E"/>
+  <circle cx="64" cy="64" r="52.5" fill="#0C2340"/>
+  <path d="M54 36L54 45.92A10 10 0 0 0 74 45.92L74 36M44 36L44 45.92A20 20 0 0 0 84 45.92L84 36M34 36L34 45.92A30 30 0 0 0 94 45.92L94 36M64 36L64 81.88" fill="none" stroke="#D9A93E" stroke-width="5" stroke-linecap="butt"/><path d="M55.25 78.47H72.75V82.47H55.25ZM57.5 81.88H70.5L77.8 91.8H50.2ZM46.6 91.8H81.4V98H46.6ZM34 27.3C37.3 31.95 37 36.45 34 36.45C31 36.45 30.7 31.95 34 27.3ZM44 27.3C47.3 31.95 47 36.45 44 36.45C41 36.45 40.7 31.95 44 27.3ZM54 27.3C57.3 31.95 57 36.45 54 36.45C51 36.45 50.7 31.95 54 27.3ZM64 27.3C67.3 31.95 67 36.45 64 36.45C61 36.45 60.7 31.95 64 27.3ZM74 27.3C77.3 31.95 77 36.45 74 36.45C71 36.45 70.7 31.95 74 27.3ZM84 27.3C87.3 31.95 87 36.45 84 36.45C81 36.45 80.7 31.95 84 27.3ZM94 27.3C97.3 31.95 97 36.45 94 36.45C91 36.45 90.7 31.95 94 27.3Z" fill="#D9A93E"/>
+</svg>
