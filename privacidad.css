@@ -1,0 +1,12 @@
+/* Estilos de privacidad.html (en archivo aparte para que la CSP no necesite estilos en línea). */
+:root { --fondo: #fbfaf7; --texto: #1f2328; --suave: #5b6168; --linea: #e4e1da; --acento: #8a6a1f; }
+@media (prefers-color-scheme: dark) { :root { --fondo: #15171a; --texto: #ecebe8; --suave: #a4a8ae; --linea: #2c3036; --acento: #d9b45a; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 680px; margin: 0 auto; padding: 48px 16px 64px; }
+h1 { font-size: 1.7rem; line-height: 1.25; margin: 0 0 4px; }
+.fecha { color: var(--suave); margin: 0 0 32px; }
+h2 { font-size: 1.1rem; margin: 32px 0 8px; }
+ul { padding-left: 1.2em; }
+a { color: var(--acento); }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--linea); color: var(--suave); font-size: .9rem; }

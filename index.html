@@ -2,6 +2,10 @@
 <html lang="es-CO" class="no-js">
 <head>
 <meta charset="utf-8">
+<!-- Seguridad: solo se carga lo propio + Google Fonts, el video de YouTube (nocookie) y el mapa de Google.
+     Si agregas un recurso de otro sitio (script, iframe, fuente, imagen), agrégalo aquí o el navegador lo bloquea. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; media-src 'self' blob:; connect-src 'self'; frame-src https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Iglesia Cristiana Camino al Cielo · Los Patios | Cultos y horarios</title>
 <meta name="description" content="Iglesia cristiana en Los Patios, Norte de Santander. Cultos el domingo a las 9:30 a. m. y 5:00 p. m.; martes, jueves y sábado a las 7:00 p. m. Calle 32 # 2-35, barrio La Cordialidad.">
@@ -224,7 +228,7 @@
           <img src="img/fachada.jpg" alt="Fachada de la iglesia de noche: portón negro abierto con las letras Camino al Cielo a cada lado" width="1400" height="788" loading="lazy">
           <figcaption>Así se ve la entrada: portón negro con «Camino al Cielo» a cada lado.</figcaption>
         </figure>
-        <div class="mapa"><iframe id="mapa" title="Mapa: Calle 32 # 2-35, La Cordialidad, Los Patios" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="mapa"><iframe id="mapa" title="Mapa: Calle 32 # 2-35, La Cordialidad, Los Patios" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
       </div>
     </div>
   </section>

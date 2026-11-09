@@ -82,12 +82,20 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.cla
     const enVivo = document.getElementById('en-vivo'); if (enVivo) enVivo.hidden = !prox.enCurso;
   }
 
+  // se arma con nodos de texto (sin innerHTML): nada de lo que se escribe aquí se interpreta como HTML
   const box = document.getElementById('horario'); if (!box) return;
-  box.innerHTML = IGLESIA.cultos.map(c => {
+  const nodo = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) n.className = cls; if (txt) n.textContent = txt; return n; };
+  box.textContent = '';
+  IGLESIA.cultos.forEach(c => {
     const esHoy = c.dia === hoy, esProx = prox && prox.c === c;
-    const marca = esProx ? (prox.enCurso ? '<em>ahora</em>' : '<em>próximo</em>') : esHoy ? '<em>hoy</em>' : '';
-    return `<div role="listitem" class="fila${esHoy ? ' hoy' : ''}${esProx ? ' prox' : ''}"><span class="dia">${dias[c.dia]} ${marca}</span><span class="nombre">${c.nombre}</span><span class="hora">${hora(c)}</span></div>`;
-  }).join('');
+    const marca = esProx ? (prox.enCurso ? 'ahora' : 'próximo') : esHoy ? 'hoy' : '';
+    const fila = nodo('div', `fila${esHoy ? ' hoy' : ''}${esProx ? ' prox' : ''}`);
+    fila.setAttribute('role', 'listitem');
+    const dia = nodo('span', 'dia', `${dias[c.dia]} `);
+    if (marca) dia.appendChild(nodo('em', '', marca));
+    fila.append(dia, nodo('span', 'nombre', c.nombre), nodo('span', 'hora', hora(c)));
+    box.appendChild(fila);
+  });
 })();
 
 /* ---- copiar la llave Bre-B ---- */
