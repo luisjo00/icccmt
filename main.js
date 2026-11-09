@@ -17,7 +17,7 @@ const IGLESIA = {
   mapa: 'https://www.google.com/maps/dir/?api=1&destination=' + COORD,
   mapaEmbed: 'https://maps.google.com/maps?q=' + encodeURIComponent('Iglesia Cristiana Camino al Cielo, Los Patios, Norte de Santander') + '&ll=' + COORD + '&z=17&output=embed',
   envivo: 'https://www.youtube.com/@ICCCMT714/live',
-  llave: '@nequilui44',
+  llave: '3188338874', // llave Bre-B de ofrendas y diezmos (celular); en pantalla va con espacios, se copia sin ellos
   // dia: 0 = domingo … 6 = sábado. Mismo orden en que se muestran.
   cultos: [
     { dia: 0, h: 9, m: 30, nombre: 'Culto dominical' },
