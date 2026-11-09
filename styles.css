@@ -123,6 +123,19 @@ p { margin: 0; text-wrap: pretty; }
 .video { margin-top: 40px; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #000; border: 1px solid var(--line); }
 .video iframe { width: 100%; height: 100%; border: 0; display: block; }
 
+/* ---- redes y compartir ---- */
+.redes { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 56px); border-top: 1px solid var(--line); }
+.redes a { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 4px 16px; padding: 22px 0; border-bottom: 1px solid var(--line); text-decoration: none; transition: color .2s; }
+.redes a::after { content: '↗'; grid-column: 2; grid-row: 1; color: var(--accent); font-size: 20px; }
+.redes b { font-family: var(--display); font-weight: 700; font-size: clamp(24px, 2.4vw, 30px); letter-spacing: -.02em; }
+.redes code { grid-column: 1 / -1; font: 500 14px/1.3 var(--mono); color: var(--accent-2); }
+.redes span { grid-column: 1 / -1; color: var(--ink-2); font-size: 16px; }
+.redes a:hover b { color: var(--accent-2); }
+.compartir { display: flex; align-items: center; gap: clamp(20px, 3vw, 36px); margin-top: 48px; padding: 24px; border: 1px solid var(--line); border-radius: var(--r); max-width: 760px; }
+.compartir img { flex: none; width: 132px; height: 132px; border-radius: 8px; background: #fff; }
+.compartir p { color: var(--ink-2); margin-top: 8px; max-width: 44ch; }
+.compartir .actions { margin-top: 18px; }
+
 /* ---- oración y ofrendas ---- */
 .ofrenda { border-top: 1px solid var(--line); padding-top: 28px; }
 .ofrenda > p { color: var(--ink-2); margin-top: 14px; max-width: 46ch; }
@@ -177,6 +190,8 @@ p { margin: 0; text-wrap: pretty; }
   .fila .dia { grid-column: 1; }
   .fila .hora { grid-column: 2; grid-row: 1; }
   .fila .nombre { grid-column: 1 / -1; font-size: 16px; }
+  .redes { grid-template-columns: 1fr; }
+  .compartir { flex-direction: column; align-items: flex-start; padding: 20px; }
   .pastores { grid-template-columns: 1fr 1fr; gap: 14px; }
   .pastores b { font-size: 18px; }
   .pastores span { font-size: 14px; }

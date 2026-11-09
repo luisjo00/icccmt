@@ -105,6 +105,17 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.cla
   });
 })();
 
+/* ---- compartir la web: menú del celular si existe, si no WhatsApp ---- */
+(function compartir() {
+  const btn = document.getElementById('compartir'); if (!btn) return;
+  const url = 'https://caminoalcielo714.org';
+  const texto = 'Mira la página de la Iglesia Cristiana Camino al Cielo: horarios de los cultos, cómo llegar y las prédicas.';
+  btn.addEventListener('click', async () => {
+    if (navigator.share) { try { await navigator.share({ title: 'Iglesia Cristiana Camino al Cielo', text: texto, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+    window.open(`https://wa.me/?text=${encodeURIComponent(texto + ' ' + url)}`, '_blank', 'noopener');
+  });
+})();
+
 /* ---- entradas de sección (solo transform, sin ocultar contenido) ---- */
 if (!reduced && 'IntersectionObserver' in window) {
   const io = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -10% 0px' });
