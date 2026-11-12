@@ -1,5 +1,5 @@
 {
-  "_nota": "Iglesias hijas de Camino al Cielo. Después de editar esta lista: python _sedes/hacer_sedes.py  (crea /<slug>/index.html de cada una y la lista «Nuestras iglesias» de index.html). Días: 0 = domingo … 6 = sábado. GitHub Pages no publica esta carpeta (empieza por _).",
+  "_nota": "Iglesias hijas de Camino al Cielo. Después de editar esta lista: python _sedes/hacer_sedes.py  (crea /<slug>/index.html de cada una y la lista «Nuestras iglesias» de index.html). Días: 0 = domingo … 6 = sábado. GitHub Pages no publica esta carpeta (empieza por _). Opcionales: foto_pastores y foto_familia (archivos dentro de /<slug>/, 4:5, sin EXIF), foto_templo (fondo de «¿Primera vez?», horizontal), foto_fachada + fachada_texto (16:9, en Ubicación), llave (Bre-B de ofrendas, diezmos y primicias: solo dígitos si es celular), redes (lista), coord_aproximada + referencia. El QR de cada iglesia (/<slug>/qr.png) lo hace iglesia/marca/qr/hacer_qr_sede.py.",
   "sedes": [
     {
       "slug": "once-de-noviembre",
@@ -11,17 +11,62 @@
       "coord_aproximada": true,
       "referencia": "sobre la Avenida 10, entre las calles 15 y 16",
       "pastores": [
-        {"titulo": "pastor", "nombre": "Jair Bayona"},
-        {"titulo": "pastora", "nombre": "Ruth Avendaño"}
+        {
+          "titulo": "pastor",
+          "nombre": "Jair Bayona"
+        },
+        {
+          "titulo": "pastora",
+          "nombre": "Ruth Avendaño"
+        }
       ],
       "whatsapp": "573232446961",
-      "facebook": {"url": "https://www.facebook.com/jair.bayona.galan.2025/", "texto": "Pastor Jair Bayona"},
+      "llave": "3232446861",
+      "foto_pastores": "pastores.jpg",
+      "foto_familia": "familia.jpg",
+      "foto_templo": "templo.jpg",
+      "foto_fachada": "fachada.jpg",
+      "fachada_texto": "Así se ve la entrada: fachada azul con puerta y persianas blancas, número 15-36.",
+      "redes": [
+        {
+          "red": "Facebook",
+          "usuario": "Jair Bayona Galan",
+          "url": "https://www.facebook.com/jair.bayona.galan.2025/",
+          "nota": "Perfil del pastor Jair Bayona"
+        },
+        {
+          "red": "TikTok",
+          "usuario": "@jairbayonagaln",
+          "url": "https://www.tiktok.com/@jairbayonagaln",
+          "nota": "Videos de la iglesia del barrio 11 de Noviembre"
+        }
+      ],
       "inaugurada": "2026-10-23",
       "cultos": [
-        {"dia": 0, "h": 9, "m": 30, "nombre": "Culto de familia"},
-        {"dia": 2, "h": 19, "m": 0, "nombre": "Culto de oración"},
-        {"dia": 4, "h": 19, "m": 0, "nombre": "Enseñanza bíblica"},
-        {"dia": 5, "h": 19, "m": 0, "nombre": "Culto evangelístico"}
+        {
+          "dia": 0,
+          "h": 9,
+          "m": 30,
+          "nombre": "Culto de familia"
+        },
+        {
+          "dia": 2,
+          "h": 19,
+          "m": 0,
+          "nombre": "Culto de oración"
+        },
+        {
+          "dia": 4,
+          "h": 19,
+          "m": 0,
+          "nombre": "Enseñanza bíblica"
+        },
+        {
+          "dia": 5,
+          "h": 19,
+          "m": 0,
+          "nombre": "Culto evangelístico"
+        }
       ]
     }
   ]

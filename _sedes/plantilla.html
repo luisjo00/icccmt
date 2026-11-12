@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <!-- Página generada por _sedes/hacer_sedes.py desde _sedes/sedes.json. No la edites a mano: cambia la lista (o _sedes/plantilla.html) y vuelve a generar. -->
-<!-- Seguridad: solo se carga lo propio + Google Fonts y el mapa de Google. Si agregas un recurso de otro sitio, agrégalo aquí en la plantilla. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<!-- Seguridad: solo se carga lo propio + Google Fonts, el video de YouTube (nocookie) y el mapa de Google. Si agregas un recurso de otro sitio, agrégalo aquí en la plantilla. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; frame-src https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{titulo}}</title>
@@ -31,28 +31,53 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="/" aria-label="Iglesia Cristiana Camino al Cielo, página principal"><img src="/img/sello.svg" alt="" width="34" height="34"><span>Camino al Cielo</span></a>
-    <nav class="nav-links" aria-label="Secciones"><a href="#cultos">Cultos</a><a href="#pastores">Pastores</a><a href="#ubicacion">Ubicación</a><a href="/#iglesias">Otras iglesias</a></nav>
+    <nav class="nav-links" aria-label="Secciones"><a href="#cultos">Cultos</a><a href="#visita">¿Primera vez?</a><a href="#pastores">Pastores</a><a href="#predicas">Prédicas</a><a href="#ubicacion">Ubicación</a><a href="/#iglesias">Otras iglesias</a></nav>
     <a class="btn btn-wa btn-nav" data-wa href="{{wa_general}}">WhatsApp</a>
     <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </header>
 <div class="menu" id="menu">
-  <a href="#cultos">Cultos</a><a href="#pastores">Pastores</a><a href="#ubicacion">Ubicación</a><a href="/#iglesias">Otras iglesias</a><a href="/">Iglesia principal</a>
+  <a href="#cultos">Cultos</a><a href="#visita">¿Primera vez?</a><a href="#pastores">Pastores</a><a href="#predicas">Prédicas</a><a href="#ubicacion">Ubicación</a><a href="/#iglesias">Otras iglesias</a>
   <a class="btn btn-wa" data-wa href="{{wa_general}}">Escribir por WhatsApp</a>
 </div>
 
 <main>
-  <!-- 1. Portada -->
-  <section class="portada" id="inicio" aria-label="{{og_titulo}}">
-    <picture class="portada-bg">
-      <source media="(max-width: 760px)" srcset="/img/hero-movil.jpg">
-      <img src="/img/hero.jpg" alt="" fetchpriority="high">
-    </picture>
-    <div class="wrap portada-in">
-      <h1><small>Iglesia Cristiana Camino al Cielo</small> Barrio {{barrio}}</h1>
-      <p>Una iglesia de la familia Camino al Cielo en {{ciudad}}. Ven a buscar a Dios con nosotros.</p>
-      <p class="proximo"><span data-proximo>{{resumen}}</span><span>{{direccion}} · barrio {{barrio}}</span></p>
-      <div class="actions"><a class="btn btn-gold" data-map href="{{mapa}}">Cómo llegar</a><a class="btn btn-wa" data-wa="visita" href="{{wa_visita}}">Avísanos que vienes</a></div>
+  <!-- 1. Portada: la misma de la iglesia principal, avanza con el scroll -->
+  <section class="film" id="inicio" aria-label="{{og_titulo}}">
+    <div class="film-stage">
+      <picture class="film-poster">
+        <source media="(max-width: 760px)" srcset="/img/hero-movil.jpg">
+        <img src="/img/hero.jpg" alt="Una escalera angosta de piedra sube entre las nubes hacia una luz dorada" fetchpriority="high">
+      </picture>
+      <div class="film-scrim" aria-hidden="true"></div>
+      <div class="chapters">
+        <article class="chapter on"><div class="wrap">
+          <h1><small>Iglesia Cristiana Camino al Cielo</small> Barrio {{barrio}}</h1>
+          <p>Una iglesia de la familia Camino al Cielo en {{ciudad}}. Ven a buscar a Dios con nosotros.</p>
+          <p class="proximo"><span data-proximo>{{resumen}}</span><span>{{direccion}} · barrio {{barrio}}</span></p>
+          <div class="actions"><a class="btn btn-gold" data-map href="{{mapa}}">Cómo llegar</a><a class="btn btn-line" href="#cultos">Ver horarios</a></div>
+        </div></article>
+        <article class="chapter"><div class="wrap">
+          <h2>Angosto es el camino que lleva a la vida.</h2>
+          <p>Mateo 7:14. Lo recorremos juntos, cada semana, con la Palabra de Dios en el centro.</p>
+        </div></article>
+        <article class="chapter"><div class="wrap">
+          <h2>¿Primera vez? Te guardamos un lugar.</h2>
+          <p>No necesitas conocer a nadie. Escríbenos y te ayudamos a llegar.</p>
+          <div class="actions"><a class="btn btn-wa" data-wa="visita" href="{{wa_visita}}">Avísanos que vienes</a></div>
+        </div></article>
+        <article class="chapter"><div class="wrap">
+          <h2><span class="nowrap">{{direccion}},</span> {{ciudad}}.</h2>
+          <p>Barrio {{barrio}}. {{resumen_punto}}</p>
+          <div class="actions"><a class="btn btn-gold" data-map href="{{mapa}}">Cómo llegar</a><a class="btn btn-wa" data-wa href="{{wa_general}}">Escribir por WhatsApp</a></div>
+        </div></article>
+      </div>
+      <nav class="film-index" aria-label="Capítulos">
+        <button type="button" data-go="0" aria-label="Inicio" class="on"></button>
+        <button type="button" data-go="1" aria-label="Mateo 7:14"></button>
+        <button type="button" data-go="2" aria-label="Primera vez"></button>
+        <button type="button" data-go="3" aria-label="Dirección"></button>
+      </nav>
     </div>
   </section>
 
@@ -73,18 +98,79 @@
     </div>
   </section>
 
-  <!-- 3. Pastores -->
-  <section class="section section-alt" id="pastores">
+  <!-- 3. Primera vez -->
+  <section class="band{{banda_clase}}" id="visita">
+    <img class="band-bg" src="{{banda_foto}}" alt="" loading="lazy">
+    <div class="wrap band-in reveal">
+      <h2>¿Es tu primera vez? Te esperamos.</h2>
+      <p class="lead">Vengas de donde vengas, aquí hay un lugar para ti.</p>
+      <ul class="lines">
+        <li><b>Ven como estás.</b> No necesitas conocer a nadie ni saberte las canciones.</li>
+        <li><b>Cerca de dos horas.</b> Alabanza, oración y la predicación de la Palabra.</li>
+        <li><b>Te ayudamos a llegar.</b> Escríbenos por WhatsApp y te indicamos el camino.</li>
+      </ul>
+      <a class="btn btn-wa" data-wa="visita" href="{{wa_visita}}">Avísanos que vienes</a>
+    </div>
+  </section>
+
+  <!-- 4. Pastores -->
+  <section class="section" id="pastores">
     <div class="wrap">
       <div class="reveal">
         <h2 class="h-section">Nuestros pastores.</h2>
         <p class="lead">{{pastores_frase}} guían la iglesia en el barrio {{barrio}}. Escríbeles para orar por ti o para lo que necesites.</p>
       </div>
-      <div class="actions reveal"><a class="btn btn-wa" data-wa="pastores" href="{{wa_pastores}}">Hablar con los pastores</a><a class="btn btn-wa" data-wa="oracion" href="{{wa_oracion}}">Pedir oración</a>{{facebook_boton}}</div>
+      {{pastores_fotos}}
+      <div class="actions reveal"><a class="btn btn-wa" data-wa="pastores" href="{{wa_pastores}}">Hablar con los pastores</a><a class="btn btn-line" data-wa="oracion" href="{{wa_oracion}}">Pedir oración</a></div>
     </div>
   </section>
 
-  <!-- 4. Ubicación y contacto -->
+  <!-- 5. Prédicas: la lista de YouTube de la iglesia principal se actualiza sola -->
+  <section class="section section-alt" id="predicas">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h-section">Prédicas de Camino al Cielo.</h2>
+        <p class="lead">La Palabra de cada semana, desde la iglesia principal. Las nuevas aparecen solas.</p>
+      </div>
+      <div class="video reveal">
+        <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=UULF9AWh4ZiqCBXliTgME6V60g" title="Prédicas de la Iglesia Cristiana Camino al Cielo en YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="actions reveal"><a class="btn btn-line" href="https://www.youtube.com/@ICCCMT714/videos" target="_blank" rel="noopener">Todas las prédicas</a><a class="btn btn-line" href="/">Conocer la iglesia principal</a></div>
+    </div>
+  </section>
+
+  <!-- 6. Redes y compartir la página -->
+  <section class="section" id="redes">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h-section">{{redes_titulo}}</h2>
+        <p class="lead">{{redes_lead}}</p>
+      </div>
+      {{redes_lista}}
+      <div class="compartir reveal">
+        <img src="qr.png" alt="Código QR de esta página" width="132" height="132" loading="lazy">
+        <div>
+          <h3>Comparte esta página</h3>
+          <p>Envíasela a tu familia y a tus vecinos, o muéstrales el código QR para que la abran con la cámara.</p>
+          <div class="actions"><button type="button" class="btn btn-gold" id="compartir">Compartir</button><a class="btn btn-line" href="qr.png" download="qr-camino-al-cielo-{{slug}}.png">Descargar el QR</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Oración y ofrendas (las ofrendas solo si la iglesia tiene llave en sedes.json) -->
+  <section class="section section-alt" id="ofrendas">
+    <div class="wrap{{ofrenda_clase}}">
+      <div class="reveal">
+        <h2 class="h-section">¿Quieres que oremos por ti?</h2>
+        <p class="lead">Escríbenos tu petición por WhatsApp. Oramos por cada una.</p>
+        <div class="actions"><a class="btn btn-wa" data-wa="oracion" href="{{wa_oracion}}">Pedir oración</a></div>
+      </div>
+      {{ofrenda}}
+    </div>
+  </section>
+
+  <!-- 8. Ubicación y contacto -->
   <section class="section" id="ubicacion">
     <div class="wrap split">
       <div class="reveal">
@@ -92,25 +178,26 @@
         <dl class="datos">
           <dt>Dirección</dt><dd><span class="nowrap">{{direccion}},</span> barrio {{barrio}}. {{ciudad}}, {{departamento}}.</dd>
           <dt>WhatsApp</dt><dd><a data-wa href="{{wa_general}}">{{whatsapp_pantalla}}</a></dd>
-          {{facebook_dato}}
+          {{redes_dato}}
         </dl>
         <div class="actions"><a class="btn btn-gold" data-map href="{{mapa}}">Cómo llegar</a><a class="btn btn-wa" data-wa href="{{wa_general}}">Escribir por WhatsApp</a></div>
       </div>
       <div class="reveal">
+        {{fachada}}
         <div class="mapa"><iframe id="mapa" title="Mapa: {{direccion}}, barrio {{barrio}}, {{ciudad}}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         {{mapa_nota}}
       </div>
     </div>
   </section>
 
-  <!-- 5. La iglesia principal -->
+  <!-- 9. La iglesia principal -->
   <section class="section section-alt" id="familia">
     <div class="wrap">
       <div class="reveal">
         <h2 class="h-section">Somos parte de Camino al Cielo.</h2>
         <p class="lead">La iglesia principal está en la Calle 32 # 2-35, barrio La Cordialidad, Los Patios. Allí transmitimos los cultos en vivo por YouTube.</p>
       </div>
-      <div class="actions reveal"><a class="btn btn-gold" href="/">Conocer la iglesia principal</a><a class="btn btn-line" href="https://www.youtube.com/@ICCCMT714/videos" target="_blank" rel="noopener">Prédicas en YouTube</a></div>
+      <div class="actions reveal"><a class="btn btn-gold" href="/">Conocer la iglesia principal</a><a class="btn btn-line" href="/#iglesias">Otras iglesias</a></div>
     </div>
   </section>
 </main>

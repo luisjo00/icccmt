@@ -75,3 +75,54 @@ if (!reduced && 'IntersectionObserver' in window) {
 } else {
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
 }
+
+/* ---- copiar la llave Bre-B ---- */
+(function copiar() {
+  const btn = document.getElementById('copiar'), code = document.getElementById('llave');
+  if (!btn || !code) return;
+  btn.addEventListener('click', async () => {
+    let ok = false;
+    try { await navigator.clipboard.writeText(SEDE.llave); ok = true; } catch (e) {
+      const r = document.createRange(); r.selectNodeContents(code); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      try { ok = document.execCommand('copy'); } catch (e2) { ok = false; }
+    }
+    btn.textContent = ok ? 'Llave copiada' : 'Mantén presionada la llave para copiarla';
+    setTimeout(() => { btn.textContent = 'Copiar llave'; }, 2500);
+  });
+})();
+
+/* ---- compartir la página: menú del celular si existe, si no WhatsApp ---- */
+(function compartir() {
+  const btn = document.getElementById('compartir'); if (!btn) return;
+  btn.addEventListener('click', async () => {
+    if (navigator.share) { try { await navigator.share({ title: SEDE.nombre, text: SEDE.compartir, url: SEDE.url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+    window.open(`https://wa.me/?text=${encodeURIComponent(SEDE.compartir + ' ' + SEDE.url)}`, '_blank', 'noopener');
+  });
+})();
+
+/* ---- portada que avanza con el scroll: la imagen se acerca (igual que la principal) ---- */
+(function portada() {
+  const film = document.querySelector('.film'), stage = document.querySelector('.film-stage');
+  const chapters = Array.from(document.querySelectorAll('.chapter'));
+  const index = Array.from(document.querySelectorAll('.film-index button'));
+  if (!film || !stage) return;
+
+  const progress = () => { const total = film.offsetHeight - window.innerHeight; if (total <= 0) return 0; const p = -film.getBoundingClientRect().top / total; return Math.min(1, Math.max(0, p)); };
+  const setChapter = (p) => {
+    const i = Math.min(chapters.length - 1, Math.floor(p * chapters.length));
+    chapters.forEach((c, k) => c.classList.toggle('on', k === i));
+    index.forEach((b, k) => b.classList.toggle('on', k === i));
+  };
+  index.forEach(b => b.addEventListener('click', () => {
+    const k = +b.dataset.go; const total = film.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: film.offsetTop + total * ((k + .5) / chapters.length), behavior: reduced ? 'auto' : 'smooth' });
+  }));
+  if (reduced) { chapters.forEach(c => c.classList.add('on')); return; }
+
+  film.classList.add('still');
+  const update = () => { const p = progress(); setChapter(p); stage.style.setProperty('--p', p.toFixed(4)); };
+  let ticking = false;
+  window.addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; update(); }); }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();

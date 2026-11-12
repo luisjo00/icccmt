@@ -75,6 +75,7 @@ def pagina(s, plantilla):
         'visita': f'Hola, quiero visitar la iglesia Camino al Cielo del barrio {barrio}. ¿Me ayudan a llegar?',
         'oracion': 'Hola, quiero pedir oración por ',
         'pastores': 'Hola, quiero hablar con los pastores.',
+        'comprobante': 'Hola, pastor. Envié mi (diezmo / ofrenda / primicia) a la llave de la iglesia. Adjunto el comprobante.',
     }
     lat, lon = (x.strip() for x in s['coord'].split(','))
     mapa = f"https://www.google.com/maps/dir/?api=1&destination={lat},{lon}"
@@ -106,17 +107,64 @@ def pagina(s, plantilla):
     }
     if pastores:
         jsonld['employee'] = [{'@type': 'Person', 'name': p['nombre'], 'jobTitle': p['titulo'].capitalize()} for p in pastores]
-    if s.get('facebook'):
-        jsonld['sameAs'] = [s['facebook']['url']]
+    redes = s.get('redes', [])
+    if redes:
+        jsonld['sameAs'] = [r['url'] for r in redes]
+    if s.get('foto_pastores'):
+        jsonld['image'] = url + s['foto_pastores']
 
     datos = {'whatsapp': s['whatsapp'], 'mensajes': mensajes, 'coord': f'{lat},{lon}', 'mapa': mapa,
-             'cultos': cultos, 'duracionMin': DURACION_MIN}
+             'cultos': cultos, 'duracionMin': DURACION_MIN, 'url': url, 'llave': s.get('llave', '').replace(' ', ''),
+             'nombre': f'Iglesia Cristiana Camino al Cielo · Barrio {barrio}',
+             'compartir': f'Mira la página de la Iglesia Cristiana Camino al Cielo del barrio {barrio}: horarios de los cultos y cómo llegar.'}
 
-    fb = s.get('facebook')
-    facebook_boton = (f'<a class="btn btn-line" href="{e(fb["url"])}" target="_blank" rel="noopener">Facebook del {e(fb["texto"][0].lower() + fb["texto"][1:])}</a>'
-                      if fb else '')
-    facebook_dato = (f'<dt>Facebook</dt><dd><a href="{e(fb["url"])}" target="_blank" rel="noopener">{e(fb["texto"])}</a></dd>'
-                     if fb else '')
+    def enlace(r, dentro):
+        return f'<a href="{e(r["url"])}" target="_blank" rel="noopener">{dentro}</a>'
+
+    redes_lista = ''
+    if redes:
+        items = [f'        <li>' + enlace(r, f'<b>{e(r["red"])}</b><code>{e(r["usuario"])}</code><span>{e(r["nota"])}</span>') + '</li>'
+                 for r in redes]
+        redes_lista = '<ul class="redes reveal">\n' + '\n'.join(items) + '\n      </ul>'
+    redes_dato = ('<dt>Redes</dt><dd>' + ' · '.join(enlace(r, e(r['red'])) for r in redes) + '</dd>') if redes else ''
+    def archivo(clave):
+        nombre = s.get(clave)
+        if nombre and not (RAIZ / s['slug'] / nombre).exists():
+            sys.exit(f"Falta /{s['slug']}/{nombre} ({clave})")
+        return nombre
+
+    def figura(nombre, alt, titulo, nota):
+        return (f'<figure class="reveal"><img src="{e(nombre)}" alt="{e(alt)}" width="800" height="1000" loading="lazy">'
+                f'<figcaption><b>{e(titulo)}</b><span>{e(nota)}</span></figcaption></figure>')
+
+    figuras = []
+    if archivo('foto_pastores'):
+        figuras.append(figura(s['foto_pastores'], pastores_frase, pastores_corto, f'Iglesia del barrio {barrio}'))
+    if archivo('foto_familia'):
+        figuras.append(figura(s['foto_familia'], 'Los pastores con sus hijos', 'La familia pastoral', 'Los pastores con sus hijos'))
+    pastores_fotos = ('<div class="pastores">\n        ' + '\n        '.join(figuras) + '\n      </div>') if figuras else ''
+
+    templo = archivo('foto_templo')
+    fachada = ''
+    if archivo('foto_fachada'):
+        texto = s.get('fachada_texto', 'Así se ve la entrada de la iglesia.')
+        fachada = (f'<figure class="fachada"><img src="{e(s["foto_fachada"])}" alt="Fachada de la iglesia del barrio {e(barrio)}" loading="lazy">'
+                   f'<figcaption>{e(texto)}</figcaption></figure>')
+
+    llave = s.get('llave', '')
+    if llave and not llave.replace(' ', '').isalnum() and not llave.startswith('@'):
+        sys.exit(f"Llave Bre-B rara en {s['slug']}: {llave!r}")
+    solo = llave.replace(' ', '')
+    llave_pantalla = f'{solo[:3]} {solo[3:6]} {solo[6:]}' if solo.isdigit() and len(solo) == 10 else llave
+    tipo = ' (celular)' if solo.isdigit() and len(solo) == 10 else ''
+    ofrenda = (f'''<div class="reveal ofrenda">
+        <h3>Ofrendas, diezmos y primicias</h3>
+        <p>Desde la app de tu banco o de Nequi, envía a la llave Bre-B{tipo} de la iglesia:</p>
+        <div class="llave"><code id="llave">{e(llave_pantalla)}</code><button type="button" class="btn btn-line" id="copiar">Copiar llave</button></div>
+        <p class="nota">Si quieres, envíanos el comprobante por WhatsApp para que los pastores lo registren como diezmo, ofrenda o primicia.</p>
+        <div class="actions"><a class="btn btn-wa" data-wa="comprobante" href="{e(wa(s['whatsapp'], mensajes['comprobante']))}">Enviar comprobante</a></div>
+        <p class="nota">Gracias por tu generosidad. Dios bendiga tu siembra.</p>
+      </div>''') if llave else ''
     mapa_nota = (f'<p class="nota">El punto del mapa es aproximado: la iglesia queda {e(s["referencia"])}. '
                  f'Si te pierdes, escríbenos por WhatsApp.</p>' if s.get('coord_aproximada') else '')
 
@@ -130,6 +178,14 @@ def pagina(s, plantilla):
         'og_descripcion': f"Te esperamos: {resumen(cultos, '; ').rstrip('.')}. {s['direccion']}, barrio {barrio}, {ciudad}.",
         'barrio': barrio, 'ciudad': ciudad, 'departamento': s['departamento'], 'direccion': s['direccion'],
         'resumen': resumen(cultos),
+        'resumen_punto': resumen(cultos, '; ').rstrip('.') + '.',
+        'slug': s['slug'],
+        'banda_foto': templo or '/img/hero.jpg',
+        'banda_clase': '' if templo else ' band-sede',
+        'ofrenda_clase': ' split' if llave else '',
+        'redes_titulo': 'Síguenos en redes.' if redes else 'Comparte esta página.',
+        'redes_lead': ('Aquí publicamos lo que pasa en la iglesia. Síguenos y comparte.' if redes
+                       else 'Ayúdanos a que más vecinos conozcan la iglesia.'),
         'conteo': CONTEO.get(len(cultos), f'{len(cultos)} cultos'),
         'pastores_frase': pastores_frase,
         'whatsapp_pantalla': whatsapp_pantalla(s['whatsapp']),
@@ -145,8 +201,11 @@ def pagina(s, plantilla):
         salida = salida.replace('{{' + k + '}}', e(v))
     crudos = {
         'filas': '\n'.join(filas),
-        'facebook_boton': facebook_boton,
-        'facebook_dato': facebook_dato,
+        'pastores_fotos': pastores_fotos,
+        'fachada': fachada,
+        'ofrenda': ofrenda,
+        'redes_lista': redes_lista,
+        'redes_dato': redes_dato,
         'mapa_nota': mapa_nota,
         'jsonld': json_en_script(jsonld),
         'datos': json_en_script(datos),
@@ -183,6 +242,8 @@ def main():
         destino = RAIZ / s['slug'] / 'index.html'
         destino.parent.mkdir(exist_ok=True)
         destino.write_text(pagina(s, plantilla), encoding='utf-8', newline='\n')
+        if not (destino.parent / 'qr.png').exists():
+            print(f'OJO /{s["slug"]}/qr.png no existe: python iglesia/marca/qr/hacer_qr_sede.py {s["slug"]}')
         print(f'ok  /{s["slug"]}/')
 
     indice = RAIZ / 'index.html'
