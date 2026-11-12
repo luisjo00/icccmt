@@ -13,6 +13,7 @@ const IGLESIA = {
     visita: 'Hola, quiero visitar la iglesia. ¿Me ayudan a llegar?',
     oracion: 'Hola, quiero pedir oración por ',
     pastores: 'Hola, quiero hablar con los pastores.',
+    comprobante: 'Hola. Envié mi (diezmo / ofrenda) a la llave de la iglesia. Adjunto el comprobante.',
   },
   mapa: 'https://www.google.com/maps/dir/?api=1&destination=' + COORD,
   mapaEmbed: 'https://maps.google.com/maps?q=' + encodeURIComponent('Iglesia Cristiana Camino al Cielo, Los Patios, Norte de Santander') + '&ll=' + COORD + '&z=17&output=embed',
