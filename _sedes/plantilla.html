@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es-CO" class="no-js">
+<head>
+<meta charset="utf-8">
+<!-- Página generada por _sedes/hacer_sedes.py desde _sedes/sedes.json. No la edites a mano: cambia la lista (o _sedes/plantilla.html) y vuelve a generar. -->
+<!-- Seguridad: solo se carga lo propio + Google Fonts y el mapa de Google. Si agregas un recurso de otro sitio, agrégalo aquí en la plantilla. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{titulo}}</title>
+<meta name="description" content="{{descripcion}}">
+<link rel="canonical" href="{{url}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{url}}">
+<meta property="og:title" content="{{og_titulo}}">
+<meta property="og:description" content="{{og_descripcion}}">
+<meta property="og:image" content="https://caminoalcielo714.org/img/og.jpg">
+<meta property="og:locale" content="es_CO">
+<meta name="theme-color" content="#0A1A30">
+<link rel="icon" href="/img/sello.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/img/hero.jpg" media="(min-width: 761px)">
+<link rel="preload" as="image" href="/img/hero-movil.jpg" media="(max-width: 760px)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">{{jsonld}}</script>
+<script type="application/json" id="sede-datos">{{datos}}</script>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Iglesia Cristiana Camino al Cielo, página principal"><img src="/img/sello.svg" alt="" width="34" height="34"><span>Camino al Cielo</span></a>
+    <nav class="nav-links" aria-label="Secciones"><a href="#cultos">Cultos</a><a href="#pastores">Pastores</a><a href="#ubicacion">Ubicación</a><a href="/#iglesias">Otras iglesias</a></nav>
+    <a class="btn btn-wa btn-nav" data-wa href="{{wa_general}}">WhatsApp</a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<div class="menu" id="menu">
+  <a href="#cultos">Cultos</a><a href="#pastores">Pastores</a><a href="#ubicacion">Ubicación</a><a href="/#iglesias">Otras iglesias</a><a href="/">Iglesia principal</a>
+  <a class="btn btn-wa" data-wa href="{{wa_general}}">Escribir por WhatsApp</a>
+</div>
+
+<main>
+  <!-- 1. Portada -->
+  <section class="portada" id="inicio" aria-label="{{og_titulo}}">
+    <picture class="portada-bg">
+      <source media="(max-width: 760px)" srcset="/img/hero-movil.jpg">
+      <img src="/img/hero.jpg" alt="" fetchpriority="high">
+    </picture>
+    <div class="wrap portada-in">
+      <h1><small>Iglesia Cristiana Camino al Cielo</small> Barrio {{barrio}}</h1>
+      <p>Una iglesia de la familia Camino al Cielo en {{ciudad}}. Ven a buscar a Dios con nosotros.</p>
+      <p class="proximo"><span data-proximo>{{resumen}}</span><span>{{direccion}} · barrio {{barrio}}</span></p>
+      <div class="actions"><a class="btn btn-gold" data-map href="{{mapa}}">Cómo llegar</a><a class="btn btn-wa" data-wa="visita" href="{{wa_visita}}">Avísanos que vienes</a></div>
+    </div>
+  </section>
+
+  <!-- 2. Cultos de la semana (sede.js marca hoy y el próximo) -->
+  <section class="section" id="cultos">
+    <div class="wrap split">
+      <div class="reveal">
+        <h2 class="h-section">{{conteo}} cada semana.</h2>
+        <p class="lead">Ven al que te quede mejor. Si es tu primera vez, escríbenos y te ayudamos a llegar.</p>
+        <p class="estado" id="estado"><i></i><span data-proximo-largo>{{resumen}}</span></p>
+        <div class="actions"><a class="btn btn-gold" data-map href="{{mapa}}">Cómo llegar</a><a class="btn btn-wa" data-wa="visita" href="{{wa_visita}}">Avísanos que vienes</a></div>
+      </div>
+      <div class="reveal">
+        <div class="horario" id="horario" role="list" aria-label="Horario de cultos">
+{{filas}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Pastores -->
+  <section class="section section-alt" id="pastores">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h-section">Nuestros pastores.</h2>
+        <p class="lead">{{pastores_frase}} guían la iglesia en el barrio {{barrio}}. Escríbeles para orar por ti o para lo que necesites.</p>
+      </div>
+      <div class="actions reveal"><a class="btn btn-wa" data-wa="pastores" href="{{wa_pastores}}">Hablar con los pastores</a><a class="btn btn-wa" data-wa="oracion" href="{{wa_oracion}}">Pedir oración</a>{{facebook_boton}}</div>
+    </div>
+  </section>
+
+  <!-- 4. Ubicación y contacto -->
+  <section class="section" id="ubicacion">
+    <div class="wrap split">
+      <div class="reveal">
+        <h2 class="h-section">Te esperamos en el {{barrio}}.</h2>
+        <dl class="datos">
+          <dt>Dirección</dt><dd><span class="nowrap">{{direccion}},</span> barrio {{barrio}}. {{ciudad}}, {{departamento}}.</dd>
+          <dt>WhatsApp</dt><dd><a data-wa href="{{wa_general}}">{{whatsapp_pantalla}}</a></dd>
+          {{facebook_dato}}
+        </dl>
+        <div class="actions"><a class="btn btn-gold" data-map href="{{mapa}}">Cómo llegar</a><a class="btn btn-wa" data-wa href="{{wa_general}}">Escribir por WhatsApp</a></div>
+      </div>
+      <div class="reveal">
+        <div class="mapa"><iframe id="mapa" title="Mapa: {{direccion}}, barrio {{barrio}}, {{ciudad}}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        {{mapa_nota}}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. La iglesia principal -->
+  <section class="section section-alt" id="familia">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h-section">Somos parte de Camino al Cielo.</h2>
+        <p class="lead">La iglesia principal está en la Calle 32 # 2-35, barrio La Cordialidad, Los Patios. Allí transmitimos los cultos en vivo por YouTube.</p>
+      </div>
+      <div class="actions reveal"><a class="btn btn-gold" href="/">Conocer la iglesia principal</a><a class="btn btn-line" href="https://www.youtube.com/@ICCCMT714/videos" target="_blank" rel="noopener">Prédicas en YouTube</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>© 2026 Iglesia Cristiana Camino al Cielo · Mateo 7:14 · Barrio {{barrio}}, {{ciudad}}</span>
+    <span class="footer-links"><a href="/">Iglesia principal</a><a href="/privacidad.html">Privacidad</a><span>Sitio creado por <a href="https://wa.me/573134308017" target="_blank" rel="noopener">Luis Rodríguez</a></span></span>
+  </div>
+</footer>
+<a class="wa-float" data-wa href="{{wa_general}}" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L4 21l1.6-4.3A8.5 8.5 0 1 1 21 12z"/><path d="M9 10c.4 2 2 3.6 4 4l1.5-1.2 2 1"/></svg></a>
+<script src="/sede.js"></script>
+</body>
+</html>

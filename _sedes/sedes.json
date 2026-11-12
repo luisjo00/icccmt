@@ -1,0 +1,28 @@
+{
+  "_nota": "Iglesias hijas de Camino al Cielo. Después de editar esta lista: python _sedes/hacer_sedes.py  (crea /<slug>/index.html de cada una y la lista «Nuestras iglesias» de index.html). Días: 0 = domingo … 6 = sábado. GitHub Pages no publica esta carpeta (empieza por _).",
+  "sedes": [
+    {
+      "slug": "once-de-noviembre",
+      "barrio": "11 de Noviembre",
+      "direccion": "Avenida 10 # 15-36",
+      "ciudad": "Los Patios",
+      "departamento": "Norte de Santander",
+      "coord": "7.82674,-72.51231",
+      "coord_aproximada": true,
+      "referencia": "sobre la Avenida 10, entre las calles 15 y 16",
+      "pastores": [
+        {"titulo": "pastor", "nombre": "Jair Bayona"},
+        {"titulo": "pastora", "nombre": "Ruth Avendaño"}
+      ],
+      "whatsapp": "573232446961",
+      "facebook": {"url": "https://www.facebook.com/jair.bayona.galan.2025/", "texto": "Pastor Jair Bayona"},
+      "inaugurada": "2026-10-23",
+      "cultos": [
+        {"dia": 0, "h": 9, "m": 30, "nombre": "Culto de familia"},
+        {"dia": 2, "h": 19, "m": 0, "nombre": "Culto de oración"},
+        {"dia": 4, "h": 19, "m": 0, "nombre": "Enseñanza bíblica"},
+        {"dia": 5, "h": 19, "m": 0, "nombre": "Culto evangelístico"}
+      ]
+    }
+  ]
+}

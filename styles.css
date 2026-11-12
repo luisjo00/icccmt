@@ -153,6 +153,25 @@ p { margin: 0; text-wrap: pretty; }
 .mapa { aspect-ratio: 4 / 3; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); background: var(--bg); }
 .mapa iframe { width: 100%; height: 100%; border: 0; display: block; filter: saturate(.85); }
 
+/* ---- nuestras iglesias (lista en index.html, generada por _sedes/hacer_sedes.py) ---- */
+.iglesias { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 20px; }
+.iglesias a { display: grid; align-content: start; gap: 6px; height: 100%; padding: 26px; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); text-decoration: none; transition: border-color .2s; }
+.iglesias a:hover { border-color: var(--accent); }
+.iglesias small { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); }
+.iglesias b { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 2.6vw, 32px); letter-spacing: -.02em; line-height: 1.08; margin: 8px 0 6px; }
+.iglesias span { color: var(--ink-2); font-size: 16px; }
+.iglesias em { font-style: normal; font-weight: 600; color: var(--accent-2); margin-top: 12px; }
+
+/* ---- páginas de las iglesias hijas: portada fija con la misma imagen ---- */
+.portada { position: relative; isolation: isolate; overflow: hidden; min-height: 92vh; min-height: 92svh; display: grid; align-items: center; padding: 110px 0 64px; }
+.portada-bg, .portada-bg img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; }
+.portada::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10, 26, 48, .9) 0%, rgba(10, 26, 48, .62) 36%, rgba(10, 26, 48, .06) 68%), linear-gradient(180deg, rgba(10, 26, 48, .6) 0%, transparent 26%, transparent 70%, rgba(10, 26, 48, .8) 100%); }
+.portada-in { display: grid; gap: 18px; }
+.portada h1 { max-width: 12ch; }
+.portada p { color: var(--ink-2); font-size: clamp(17px, 1.35vw, 20px); max-width: 42ch; }
+.portada .proximo { display: grid; gap: 6px; font: 500 14px/1.45 var(--mono); color: var(--accent-2); max-width: none; }
+.portada .actions { margin-top: 6px; }
+
 .footer { padding: 30px 0 36px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 14px; }
 .footer .wrap { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 8px 22px; }
@@ -199,6 +218,11 @@ p { margin: 0; text-wrap: pretty; }
   .pastores b { font-size: 18px; }
   .pastores span { font-size: 14px; }
   .footer .wrap { padding-bottom: 64px; }
+  .portada { align-items: end; padding: 96px 0 34px; }
+  .portada-bg, .portada-bg img { object-position: center; }
+  .portada::before { background: linear-gradient(180deg, rgba(10, 26, 48, .6) 0%, rgba(10, 26, 48, .05) 24%, rgba(10, 26, 48, .5) 50%, rgba(10, 26, 48, .97) 82%); }
+  .portada .proximo { font-size: 13px; }
+  .iglesias a { padding: 22px; }
 }
 @media (max-width: 420px) {
   .chapter .actions .btn { padding: 15px 18px; }

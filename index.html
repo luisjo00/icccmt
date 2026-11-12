@@ -55,13 +55,13 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="#inicio" aria-label="Iglesia Cristiana Camino al Cielo, inicio"><img src="img/sello.svg" alt="" width="34" height="34"><span>Camino al Cielo</span></a>
-    <nav class="nav-links" aria-label="Secciones"><a href="#cultos">Cultos</a><a href="#visita">¿Primera vez?</a><a href="#predicas">Prédicas</a><a href="#ofrendas">Ofrendas</a><a href="#ubicacion">Ubicación</a></nav>
+    <nav class="nav-links" aria-label="Secciones"><a href="#cultos">Cultos</a><a href="#visita">¿Primera vez?</a><a href="#predicas">Prédicas</a><a href="#ofrendas">Ofrendas</a><a href="#ubicacion">Ubicación</a><a href="#iglesias">Iglesias</a></nav>
     <a class="btn btn-wa btn-nav" data-wa href="#">WhatsApp</a>
     <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </header>
 <div class="menu" id="menu">
-  <a href="#cultos">Cultos</a><a href="#visita">¿Primera vez?</a><a href="#predicas">Prédicas</a><a href="#ofrendas">Ofrendas</a><a href="#ubicacion">Ubicación</a>
+  <a href="#cultos">Cultos</a><a href="#visita">¿Primera vez?</a><a href="#predicas">Prédicas</a><a href="#ofrendas">Ofrendas</a><a href="#ubicacion">Ubicación</a><a href="#iglesias">Nuestras iglesias</a>
   <a class="btn btn-wa" data-wa href="#">Escribir por WhatsApp</a>
 </div>
 
@@ -230,6 +230,21 @@
         </figure>
         <div class="mapa"><iframe id="mapa" title="Mapa: Calle 32 # 2-35, La Cordialidad, Los Patios" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
       </div>
+    </div>
+  </section>
+
+  <!-- 9. Nuestras iglesias: la lista la escribe _sedes/hacer_sedes.py desde _sedes/sedes.json (no editar entre las marcas) -->
+  <section class="section section-alt" id="iglesias">
+    <div class="wrap">
+      <div class="reveal">
+        <h2 class="h-section">Nuestras iglesias.</h2>
+        <p class="lead">La familia Camino al Cielo también se reúne en otros barrios. Cada iglesia tiene sus pastores, sus horarios y su WhatsApp.</p>
+      </div>
+      <ul class="iglesias reveal">
+<!-- iglesias:inicio -->
+        <li><a href="/once-de-noviembre/"><small>Los Patios</small><b>Barrio 11 de Noviembre</b><span class="nowrap">Avenida 10 # 15-36</span><span>Pastores Jair Bayona y Ruth Avendaño</span><span>Domingo 9:30 a. m. · martes, jueves y viernes 7:00 p. m.</span><em>Horarios y cómo llegar →</em></a></li>
+<!-- iglesias:fin -->
+      </ul>
     </div>
   </section>
 </main>
